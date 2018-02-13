@@ -3,7 +3,7 @@ A repo for building an FFMPEG microservice Docker image
 
 ## Build
 
-Build the image with `build.sh`. Pass in your hostname as an argument (i.e. <hostname>/ffmpeg)
+Build the image with `build.sh`. Pass in your hostname as an argument (i.e. HOSTNAME/ffmpeg)
 
 ## Running
 
