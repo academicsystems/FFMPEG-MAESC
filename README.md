@@ -16,7 +16,9 @@ You can run the image with the following command (replace HOST_PORT & HOST_DIR):
 /upload/(.+) - send original files here
 
 /service - this will run your ffmpeg conversion commands and respond with the converted file
+```
 {
   "cmd": array, the ffmpeg commands. Should include "INPUT" and "OUTPUT" as separate elements.
   "input": string, the file name to convert.
 }
+```
