@@ -1,5 +1,5 @@
 # FFMPEG-MAESC
-A repo to build a Bengine Docker image and run in a microservice architecture.
+A repo for building an FFMPEG microservice Docker image
 
 ## Build
 
