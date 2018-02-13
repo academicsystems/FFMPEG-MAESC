@@ -7,9 +7,9 @@ Build the image with `build.sh`. Pass in your hostname as an argument (i.e. <hos
 
 ## Running
 
-You can run the image with the following command (replace HOST_PORT & HOST_DIR):
+You can run the image with the following command (replace HOST_PORT,HOST_DIR,HOST_NAME):
 
-`docker run -itd -p HOST_PORT:80 -v HOST_DIR:/var/www/tmp sregistry.academic.systems/ffmpeg`
+`docker run -itd -p HOST_PORT:80 -v HOST_DIR:/var/www/tmp HOST_NAME/ffmpeg`
 
 ## Usage
 
@@ -19,6 +19,6 @@ You can run the image with the following command (replace HOST_PORT & HOST_DIR):
 ```
 {
   "cmd": array, the ffmpeg commands. Should include "INPUT" and "OUTPUT" as separate elements.
-  "input": string, the file name to convert.
+  "input": string, the file name to convert. It will be inserted into the "INPUT" location of your commands.
 }
 ```
