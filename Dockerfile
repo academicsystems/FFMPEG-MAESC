@@ -7,16 +7,23 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y nginx spawn-fcgi python python-setuptools xz-utils wget
 
 # install ffmpeg
-RUN wget -O ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz
-RUN mkdir ffmpeg && tar xJf ffmpeg.tar.xz -C ffmpeg --strip-components=1
-RUN mv ffmpeg/ffmpeg /bin/ffmpeg && mv ffmpeg/ffprobe /bin/ffprobe && mv ffmpeg/qt-faststart /bin/qt-faststart
-RUN chown -R root:root /bin
-RUN rm ffmpeg.tar.xz
-RUN rm -rf ffmpeg
+RUN apt-get install -y ffmpeg
+
+# static builds are down until John Van Sickle gets his money
+#RUN wget -O ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz
+#RUN mkdir ffmpeg && tar xJf ffmpeg.tar.xz -C ffmpeg --strip-components=1
+#RUN mv ffmpeg/ffmpeg /bin/ffmpeg && mv ffmpeg/ffprobe /bin/ffprobe && mv ffmpeg/qt-faststart /bin/qt-faststart
+#RUN chown -R root:root /bin
+#RUN rm ffmpeg.tar.xz
+#RUN rm -rf ffmpeg
 
 # configure nginx
 
 COPY assets/localhost.conf /etc/nginx/sites-available/localhost.conf
+
+RUN sed -i '0,/##/{s/##/##\nclient_max_body_size 10000M;/}' /etc/nginx/nginx.conf
+RUN rm /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/sites-available/default
 
 RUN rm -rf /var/www/html/
 RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/localhost.conf
